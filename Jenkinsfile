@@ -33,14 +33,15 @@ pipeline {
                 sh 'wget http://localhost:9000'
             }
         }
+    }
 
-        post {
+    post {
         success {
             echo 'Deployment succesfully'
         }
         failure {
             echo 'CRITICAL ERROR'
         }
-        }
     }
 }
+
