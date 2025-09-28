@@ -1,6 +1,9 @@
 pipeline {
     agent any
-   
+    environment {
+    WEBSERVER = "Apache"
+    }
+    
     stages {
         stage('Create web directory')
         {
@@ -21,10 +24,25 @@ pipeline {
             sh 'docker rm -f apache1'
             }
         }
+
+        //apache
         stage('Create the Apache httpd container and deploy') {
             steps {
+            when {
+                environment name: 'WEBSERVER', value: 'Apache'
+            }
             echo 'Creating the container...'
             sh 'docker run -dit --name apache1 -p 9000:80  -v /var/lib/jenkins/workspace/Pipe_despliegue/web:/usr/local/apache2/htdocs/ httpd'
+            }
+        }
+        //nginx
+        stage('Create the Nginx container and deploy') {
+            steps {
+            when {
+                environment name: 'WEBSERVER', value: 'Nginx'
+            }
+            echo 'Creating the container...'
+            sh 'docker run -dit --name apache1 -p 9000:80  -v /var/lib/jenkins/workspace/Pipe_despliegue/web:/usr/share/nginx/html nginx'
             }
         }
         stage('Checking the app') {
