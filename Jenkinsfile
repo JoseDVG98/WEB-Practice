@@ -38,10 +38,12 @@ pipeline {
     post {
         always{
             echo 'These steps are always executed'
-            cleanWs()
+            
         }
         success {
             echo 'Deployment succesfully'
+            archiveArtifacts artifacts: 'web/*.html', followSymlinks: false
+            cleanWs()
         }
         failure {
             echo 'CRITICAL ERROR'
