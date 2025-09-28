@@ -32,6 +32,15 @@ pipeline {
                 echo 'Testing the web app'
                 sh 'wget http://localhost:9000'
             }
-        }       
+        }
+
+        post {
+        success {
+            echo 'Deployment succesfully'
+        }
+        failure {
+            echo 'CRITICAL ERROR'
+        }
+        }
     }
 }
