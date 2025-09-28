@@ -37,7 +37,7 @@ pipeline {
 
     post {
         always{
-            echos 'These steps are always executed'
+            echo 'These steps are always executed'
             cleanWS()
         }
         success {
