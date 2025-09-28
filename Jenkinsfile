@@ -27,20 +27,20 @@ pipeline {
 
         //apache
         stage('Create the Apache httpd container and deploy') {
-            steps {
             when {
                 environment name: 'WEBSERVER', value: 'Apache'
             }
+            steps {
             echo 'Creating the container...'
             sh 'docker run -dit --name apache1 -p 9000:80  -v /var/lib/jenkins/workspace/Pipe_despliegue/web:/usr/local/apache2/htdocs/ httpd'
             }
         }
         //nginx
         stage('Create the Nginx container and deploy') {
-            steps {
             when {
                 environment name: 'WEBSERVER', value: 'Nginx'
             }
+            steps {
             echo 'Creating the container...'
             sh 'docker run -dit --name apache1 -p 9000:80  -v /var/lib/jenkins/workspace/Pipe_despliegue/web:/usr/share/nginx/html nginx'
             }
