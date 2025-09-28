@@ -36,6 +36,10 @@ pipeline {
     }
 
     post {
+        always{
+            echos 'These steps are always executed'
+            cleanWS()
+        }
         success {
             echo 'Deployment succesfully'
         }
