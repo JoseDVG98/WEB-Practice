@@ -13,11 +13,11 @@ pipeline {
               parameters {
                     string(name:'AUTHOR', defaultValue: 'Jose', description: 'Author of the web application deployment ')
                     string(name:'ENVIRONMENT', defaultValue: 'Development',description: 'Environment to deploy')
-                    choice choices: ['Apache', 'Nginx'], description: 'Servidores a desplegar', name: 'WEBSERVER'
+                    choice (choices: ['Apache', 'Nginx'], description: 'Servidores a desplegar', name: 'WEBSERVER')
                  }
             }
             steps{
-                echo "The responsible of this project is ${AUTHOR} and and will be deployed in ${ENVIRONMENT}"
+                echo "The responsible of this project is ${AUTHOR} and and will be deployed in ${ENVIRONMENT} Server ${WEBSERVER}"
             }
         }
         stage('Drop the Apache HTTPD Docker container'){
