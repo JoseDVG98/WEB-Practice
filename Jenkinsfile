@@ -3,6 +3,9 @@ pipeline {
     /*environment {
     WEBSERVER = "Apache"
     }*/
+    parameters {  
+        choice (choices: ['Apache', 'Nginx'], description: 'Servidores a desplegar', name: 'WEBSERVER')
+    }
     
     stages {
         stage('Create web directory')
@@ -13,7 +16,6 @@ pipeline {
               parameters {
                     string(name:'AUTHOR', defaultValue: 'Jose', description: 'Author of the web application deployment ')
                     string(name:'ENVIRONMENT', defaultValue: 'Development',description: 'Environment to deploy')
-                    choice (choices: ['Apache', 'Nginx'], description: 'Servidores a desplegar', name: 'WEBSERVER')
                  }
             }
             steps{
