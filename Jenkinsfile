@@ -4,7 +4,7 @@ pipeline {
     WEBSERVER = "Apache"
     }*/
     parameters {  
-        choice (choices: ['Apache', 'Nginx'], description: 'Servidores a desplegar', name: 'WEBSERVER')
+        choice choices: ['Apache', 'Nginx'], description: 'Servidores a desplegar', name: 'WEBSERVER'
     }
     
     stages {
